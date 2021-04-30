@@ -1,11 +1,7 @@
-import React from "react";
+import { HideAndSeek } from "./pages/HideAndSeek";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Games</h1>
-    </div>
-  );
+  return <HideAndSeek />;
 }
 
 export default App;
