@@ -10,7 +10,6 @@ import { Dashboard } from "../pages/Dashboard";
 import { ForgotPassword } from "../pages/ForgotPassword";
 import { ResetPassword } from "../pages/ResetPassword";
 import { Profile } from "../pages/Profile";
-import { HideAndSeek } from "../pages/HideAndSeek";
 
 const Routes: React.FC = () => (
   <Switch>
@@ -21,8 +20,6 @@ const Routes: React.FC = () => (
 
     <Route path="/dashboard" component={Dashboard} isPrivate />
     <Route path="/profile" component={Profile} isPrivate />
-
-    <Route path="/hide-and-seek" component={HideAndSeek} isPrivate />
   </Switch>
 );
 

@@ -1,8 +1,4 @@
-import styled, { css } from "styled-components";
-
-type PieceProps = {
-  show: boolean;
-};
+import styled from "styled-components";
 
 export const Container = styled.div``;
 
@@ -22,23 +18,19 @@ export const Board = styled.div`
   height: calc(100vh - 210px);
 `;
 
-export const Piece = styled.button<PieceProps>`
+export const Piece = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: calc((100vw - 37px) / 10);
-  height: calc((100vh - 115px) / 10 - 10px);
-  border: 1px solid #fff;
+  width: calc((100vw - 37px) / 3);
+  height: calc((100vh - 225px) / 3);
+  border: 5px solid #fff;
   background-color: #0f0;
 
-  img {
-    width: calc(100vw / 10 - 1px);
-    height: calc((100vh - 62px) / 10 - 10px);
+  button {
+    width: calc((100vw - 37px) / 3);
+    height: calc((100vh - 225px) / 3);
+    border: 0;
+    background: transparent;
   }
-
-  ${(props) =>
-    props.show &&
-    css`
-      background-color: #f00;
-    `}
 `;

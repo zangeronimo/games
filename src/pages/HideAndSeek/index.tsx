@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Container, Board, Title, Piece } from "./styles";
 import spider from "../../assets/spider-man.jpeg";
+import { FaToiletPaper } from "react-icons/fa";
 
 type PieceData = {
   label: string;
@@ -62,9 +63,12 @@ export const HideAndSeek: React.FC = () => {
   return (
     <Container>
       <Title>
-        Jogar esconde-esconde
-        <button type="button" onClick={newGamme}>
-          Novo Jogo
+        <button
+          type="button"
+          className="btn btn-outline-primary"
+          onClick={newGamme}
+        >
+          <FaToiletPaper size={28} />
         </button>
       </Title>
       <Board>
