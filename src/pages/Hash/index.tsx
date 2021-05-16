@@ -56,21 +56,42 @@ export const Hash: React.FC = () => {
     [toggle, pieces, winner]
   );
 
+  const hasPossibilityToLose = useCallback(
+    (start: number, pos1: number, pos2: number) => {
+      if (pieces[start].icon === FaSpider) {
+        if (pieces[pos1].icon === FaSpider) {
+          if (pieces[pos2].icon === undefined) return pos2;
+        }
+      }
+      if (pieces[start].icon === FaSpider) {
+        if (pieces[pos2].icon === FaSpider) {
+          if (pieces[pos1].icon === undefined) return pos1;
+        }
+      }
+      if (pieces[pos1].icon === FaSpider) {
+        if (pieces[pos2].icon === FaSpider) {
+          if (pieces[start].icon === undefined) return start;
+        }
+      }
+    },
+    [pieces]
+  );
+
   const hasPossibilityToWin = useCallback(
     (start: number, pos1: number, pos2: number) => {
       if (pieces[start].icon === FaCookie) {
         if (pieces[pos1].icon === FaCookie) {
-          return pieces[pos2].icon === undefined && pos2;
+          if (pieces[pos2].icon === undefined) return pos2;
         }
       }
       if (pieces[start].icon === FaCookie) {
         if (pieces[pos2].icon === FaCookie) {
-          return pieces[pos1].icon === undefined && pos1;
+          if (pieces[pos1].icon === undefined) return pos1;
         }
       }
       if (pieces[pos1].icon === FaCookie) {
         if (pieces[pos2].icon === FaCookie) {
-          return pieces[start].icon === undefined && start;
+          if (pieces[start].icon === undefined) return start;
         }
       }
     },
@@ -87,11 +108,11 @@ export const Hash: React.FC = () => {
     const win7 = hasPossibilityToWin(3, 4, 5);
     const win8 = hasPossibilityToWin(6, 7, 8);
 
-    if (win1) {
+    if (win1 || win1 === 0) {
       handleClick(pieces[win1]?.label);
-    } else if (win2) {
+    } else if (win2 || win2 === 0) {
       handleClick(pieces[win2]?.label);
-    } else if (win3) {
+    } else if (win3 || win3 === 0) {
       handleClick(pieces[win3]?.label);
     } else if (win4) {
       handleClick(pieces[win4]?.label);
@@ -104,15 +125,39 @@ export const Hash: React.FC = () => {
     } else if (win8) {
       handleClick(pieces[win8]?.label);
     } else {
-      const free = pieces.filter((item) => item.icon === undefined);
-      if (free.length === 0) {
-        setOlder(true);
+      const lose1 = hasPossibilityToLose(0, 1, 2);
+      const lose2 = hasPossibilityToLose(0, 3, 6);
+      const lose3 = hasPossibilityToLose(0, 4, 8);
+      const lose4 = hasPossibilityToLose(1, 4, 7);
+      const lose5 = hasPossibilityToLose(2, 5, 8);
+      const lose6 = hasPossibilityToLose(2, 4, 8);
+      const lose7 = hasPossibilityToLose(3, 4, 5);
+      const lose8 = hasPossibilityToLose(6, 7, 8);
+
+      if (lose1 || lose1 === 0) {
+        handleClick(pieces[lose1]?.label);
+      } else if (lose2 || lose2 === 0) {
+        handleClick(pieces[lose2]?.label);
+      } else if (lose3 || lose3 === 0) {
+        handleClick(pieces[lose3]?.label);
+      } else if (lose4) {
+        handleClick(pieces[lose4]?.label);
+      } else if (lose5) {
+        handleClick(pieces[lose5]?.label);
+      } else if (lose6) {
+        handleClick(pieces[lose6]?.label);
+      } else if (lose7) {
+        handleClick(pieces[lose7]?.label);
+      } else if (lose8) {
+        handleClick(pieces[lose8]?.label);
       } else {
+        const free = pieces.filter((item) => item.icon === undefined);
+        if (free.length === 0) setOlder(true);
         const selected = Math.floor(Math.random() * free.length);
         handleClick(free[selected]?.label);
       }
     }
-  }, [handleClick, pieces, hasPossibilityToWin]);
+  }, [handleClick, pieces, hasPossibilityToWin, hasPossibilityToLose]);
 
   const checkWinner = useCallback(
     (start: number, pos1: number, pos2: number) => {
