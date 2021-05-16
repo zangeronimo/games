@@ -174,6 +174,18 @@ export const Hash: React.FC = () => {
 
     if (pieces[4].icon === undefined) {
       handleClick(pieces[4].label);
+    } else if (
+      pieces[5].icon === FaSpider &&
+      pieces[6].icon === FaSpider &&
+      pieces[7].icon === undefined
+    ) {
+      handleClick(pieces[7].label);
+    } else if (
+      pieces[3].icon === undefined &&
+      pieces[4].icon === FaCookie &&
+      pieces[5].icon !== FaSpider
+    ) {
+      handleClick(pieces[3].label);
     } else if (pieces[0].icon === undefined) {
       handleClick(pieces[0].label);
     } else if (pieces[2].icon === undefined) {
@@ -271,7 +283,7 @@ export const Hash: React.FC = () => {
         <select value={mode} onChange={(e) => setMode(Number(e.target.value))}>
           <option value={0}>Fácil</option>
           <option value={1}>Médio</option>
-          <option value={2}>Desafio</option>
+          <option value={2}>Difícil</option>
           <option value={3}>Geminiano</option>
         </select>
       </Title>
