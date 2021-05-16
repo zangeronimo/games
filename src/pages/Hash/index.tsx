@@ -115,7 +115,7 @@ export const Hash: React.FC = () => {
     const win3 = hasPossibilityToWin(0, 4, 8);
     const win4 = hasPossibilityToWin(1, 4, 7);
     const win5 = hasPossibilityToWin(2, 5, 8);
-    const win6 = hasPossibilityToWin(2, 4, 8);
+    const win6 = hasPossibilityToWin(2, 4, 6);
     const win7 = hasPossibilityToWin(3, 4, 5);
     const win8 = hasPossibilityToWin(6, 7, 8);
 
