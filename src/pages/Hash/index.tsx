@@ -130,7 +130,7 @@ export const Hash: React.FC = () => {
       const lose3 = hasPossibilityToLose(0, 4, 8);
       const lose4 = hasPossibilityToLose(1, 4, 7);
       const lose5 = hasPossibilityToLose(2, 5, 8);
-      const lose6 = hasPossibilityToLose(2, 4, 8);
+      const lose6 = hasPossibilityToLose(2, 4, 6);
       const lose7 = hasPossibilityToLose(3, 4, 5);
       const lose8 = hasPossibilityToLose(6, 7, 8);
 
