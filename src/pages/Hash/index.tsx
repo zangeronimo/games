@@ -40,6 +40,14 @@ export const Hash: React.FC = () => {
     setPieces(newPieces);
   }, []);
 
+  const handleChanceDificult = useCallback(
+    (m: number) => {
+      restart();
+      setMode(m);
+    },
+    [restart]
+  );
+
   const handleClick = useCallback(
     (label: number) => {
       if (!winner) {
@@ -183,7 +191,10 @@ export const Hash: React.FC = () => {
     } else if (
       pieces[3].icon === undefined &&
       pieces[4].icon === FaCookie &&
-      pieces[5].icon !== FaSpider
+      pieces[2].icon !== FaSpider &&
+      pieces[3].icon !== FaSpider &&
+      pieces[5].icon !== FaSpider &&
+      pieces[7].icon !== FaSpider
     ) {
       handleClick(pieces[3].label);
     } else if (pieces[0].icon === undefined) {
@@ -280,7 +291,10 @@ export const Hash: React.FC = () => {
           {older && !winner && <FaPoo style={{ color: "#434304" }} size={48} />}
         </div>
 
-        <select value={mode} onChange={(e) => setMode(Number(e.target.value))}>
+        <select
+          value={mode}
+          onChange={(e) => handleChanceDificult(Number(e.target.value))}
+        >
           <option value={0}>Fácil</option>
           <option value={1}>Médio</option>
           <option value={2}>Difícil</option>
